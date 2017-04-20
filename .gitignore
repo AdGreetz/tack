@@ -13,3 +13,4 @@ terraform.tfvars
 tmp/
 templates
 *.bak
+/manifests/addons/newrelic.yml

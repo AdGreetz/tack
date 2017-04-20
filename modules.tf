@@ -144,3 +144,18 @@ module "worker" {
   subnet-ids = "${ module.vpc.subnet-ids-private }"
   vpc-id = "${ module.vpc.id }"
 }
+
+module "efs" {
+  source = "./modules/efs"
+//  depends-id = "${ module.route53.depends-id }"
+
+  # variables
+  hyperkube-tag = "${ var.k8s["hyperkube-tag"] }"
+  name = "${ var.name }"
+
+  # modules
+  vpc-id = "${ module.vpc.id }"
+  subnet-ids-private = "${ module.vpc.subnet-ids-private }"
+  security-group-id = "${ module.security.worker-id }"
+}
+

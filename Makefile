@@ -21,10 +21,10 @@ DIR_SSL				:= .cfssl
 
 # ∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨∨
 
-AWS_REGION						?= us-east-1
+AWS_REGION						?= us-west-2
 COREOS_CHANNEL				?= stable
 COREOS_VM_TYPE				?= hvm
-CLUSTER_NAME 					?= test
+CLUSTER_NAME 					?= dev
 
 AWS_EC2_KEY_NAME			?= kz8s-$(CLUSTER_NAME)
 AWS_EC2_KEY_PATH			:= ${DIR_KEY_PAIR}/${AWS_EC2_KEY_NAME}.pem
@@ -86,6 +86,8 @@ post-terraform:
 	@echo "---"
 	@echo "Status summaries:"
 	@echo "% make status"
+	@echo "Prepping EFS:"
+	./scripts/prep-efs.sh
 
 
 ## destroy and remove everything
